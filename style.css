@@ -222,3 +222,49 @@ body {
     transform: translateY(-4px);
   }
 }
+
+@media (max-width: 768px) {
+  .card-scene {
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    gap: 18px;
+  }
+
+  .open-text {
+    order: -1;
+    width: 100%;
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .card {
+    width: 295px;
+    height: 420px;
+    transform: perspective(2000px) rotate(4deg);
+  }
+
+  .card.open {
+    transform: perspective(2000px) rotate(6deg) scale(1.02);
+  }
+
+  .details {
+    padding: 32px 20px 18px 24px;
+  }
+
+  .details h4 {
+    font-size: 30px;
+  }
+
+  .details p {
+    font-size: 16px;
+    line-height: 13px;
+    margin-bottom: 8px;
+  }
+
+  .corner-character {
+    width: 145px;
+    right: 0;
+    bottom: 0;
+  }
+}
