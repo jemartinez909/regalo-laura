@@ -10,30 +10,38 @@ body {
   overflow: hidden;
 }
 
-/* Fondo principal de la carta */
 .gift-page {
   min-height: 100vh;
-  background:
-    linear-gradient(rgba(216, 210, 220, 0.25), rgba(216, 210, 220, 0.25)),
-    url("https://i.pinimg.com/736x/d9/14/41/d914413638083f0e627811e409afc6ce.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
   position: relative;
   display: flex;
   align-items: center;
-  padding-left: 8%;
+  justify-content: flex-end;
+  padding-right: 8%;
+  overflow: hidden;
 }
 
-/* Aquí dejo la caja y la carta una al lado de la otra */
+.background-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.video-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(35, 22, 45, 0.28);
+  z-index: 1;
+}
+
 .gift-content {
   display: flex;
   align-items: center;
-  gap: 90px;
+  gap: 65px;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .gift-area {
@@ -47,9 +55,9 @@ body {
   width: 220px;
   text-align: center;
   font-size: 22px;
-  color: #6d3b91;
+  color: #ffffff;
   font-weight: bold;
-  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 3px 10px rgba(80, 35, 110, 0.9);
   animation: pulse 1.5s infinite;
 }
 
@@ -86,7 +94,6 @@ body {
   overflow: hidden;
 }
 
-/* Cintas moradas del regalo */
 .ribbon.vertical {
   width: 42px;
   height: 200px;
@@ -131,26 +138,32 @@ body {
   opacity: 0.95;
 }
 
-/* Carta con estilo hecho a mano */
+.letter-wrapper {
+  position: relative;
+  width: 390px;
+}
+
+/* La carta queda un poco más pequeña y girada hacia la derecha */
 .birthday-letter {
-  width: 430px;
-  min-height: 470px;
-  padding: 42px 38px;
+  width: 390px;
+  min-height: 430px;
+  padding: 36px 34px;
   background: rgba(255, 252, 244, 0.94);
   border: 2px solid rgba(122, 63, 178, 0.25);
   border-radius: 22px;
   color: #5c3a4d;
   box-shadow:
-    0 20px 45px rgba(82, 45, 104, 0.25),
+    0 20px 45px rgba(20, 10, 30, 0.35),
     inset 0 0 25px rgba(255, 220, 240, 0.45);
-  transform: rotate(-1.5deg);
+  transform: rotate(2deg);
   position: relative;
+  z-index: 4;
 }
 
 .birthday-letter::before {
   content: "";
   position: absolute;
-  inset: 16px;
+  inset: 14px;
   border: 1px dashed rgba(122, 63, 178, 0.28);
   border-radius: 16px;
   pointer-events: none;
@@ -158,38 +171,38 @@ body {
 
 .letter-date {
   display: block;
-  margin-bottom: 18px;
-  font-size: 20px;
+  margin-bottom: 16px;
+  font-size: 18px;
   color: #8b4bb8;
 }
 
 .birthday-letter h1 {
-  margin-bottom: 24px;
-  font-size: 34px;
+  margin-bottom: 20px;
+  font-size: 30px;
   line-height: 1.1;
   color: #7b3fb2;
   font-weight: 700;
 }
 
 .birthday-letter p {
-  margin-bottom: 20px;
-  font-size: 20px;
-  line-height: 1.45;
+  margin-bottom: 18px;
+  font-size: 18px;
+  line-height: 1.42;
 }
 
 .letter-signature {
-  margin-top: 30px;
+  margin-top: 24px;
   text-align: right;
   color: #7b3fb2;
-  font-size: 24px;
+  font-size: 22px;
 }
 
-/* Personaje decorativo de la esquina */
+/* Esta imagen queda encima de la carta */
 .corner-character {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  width: 340px;
+  position: absolute;
+  right: -42px;
+  bottom: -36px;
+  width: 240px;
   height: auto;
   margin: 0;
   padding: 0;
@@ -197,7 +210,7 @@ body {
   user-select: none;
   pointer-events: none;
   animation: softBounce 3s ease-in-out infinite;
-  z-index: 1;
+  z-index: 6;
 }
 
 @keyframes shake {
