@@ -1,18 +1,25 @@
-const giftBox = document.getElementById("giftBox");
+const birthdayCard = document.getElementById("birthdayCard");
+const music = document.getElementById("backgroundMusic");
 
-let clicks = 0;
+let musicStarted = false;
 
-giftBox.addEventListener("click", () => {
-  clicks++;
+birthdayCard.addEventListener("click", () => {
+  birthdayCard.classList.toggle("open");
 
-  giftBox.classList.add("clicked");
+  // La música empieza con el primer clic dentro de la página
+  if (!musicStarted) {
+    music.volume = 0;
 
-  setTimeout(() => {
-    giftBox.classList.remove("clicked");
-  }, 300);
+    music.play();
 
-  // La cajita se abre hasta el cuarto clic
-  if (clicks >= 4) {
-    giftBox.classList.add("open");
+    const fade = setInterval(() => {
+      if (music.volume < 0.35) {
+        music.volume = Math.min(music.volume + 0.01, 0.35);
+      } else {
+        clearInterval(fade);
+      }
+    }, 120);
+
+    musicStarted = true;
   }
 });

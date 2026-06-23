@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -6,17 +9,13 @@
 
 body {
   min-height: 100vh;
-  font-family: "Comic Sans MS", "Segoe Print", cursive;
   overflow: hidden;
+  font-family: "Indie Flower", cursive;
 }
 
 .gift-page {
   min-height: 100vh;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 8%;
   overflow: hidden;
 }
 
@@ -32,221 +31,166 @@ body {
 .video-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(35, 22, 45, 0.28);
+  background: rgba(25, 20, 35, 0.18);
   z-index: 1;
 }
 
-.gift-content {
-  display: flex;
-  align-items: center;
-  gap: 65px;
+.card-scene {
   position: relative;
   z-index: 3;
-}
-
-.gift-area {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 28px;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 14%;
+  gap: 35px;
 }
 
-.gift-text {
-  width: 220px;
+.card {
+  color: #3f3f3f;
+  position: relative;
+  width: 320px;
+  height: 430px;
+  background: #f4f0e8;
+  transform-style: preserve-3d;
+  transform: perspective(2000px) rotate(3deg);
+  box-shadow:
+    inset 320px 0 50px rgba(0, 0, 0, 0.35),
+    18px 15px 45px rgba(0, 0, 0, 0.35);
+  transition: 1s;
+  cursor: pointer;
+}
+
+.card.open {
+  transform: perspective(2000px) rotate(8deg) scale(1.08);
+  box-shadow:
+    inset 20px 0 50px rgba(0, 0, 0, 0.25),
+    0 15px 80px rgba(0, 0, 0, 0.35);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: #d8d0c4;
+  transform-origin: bottom;
+  transform: skewX(-45deg);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 5px;
+  height: 100%;
+  background: #b9afa3;
+  transform-origin: left;
+  transform: skewY(-45deg);
+}
+
+.imgBox {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-origin: left;
+  transition: 0.8s;
+  z-index: 5;
+}
+
+.imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Esta capa da el efecto de sombra cuando se abre */
+.bark {
+  position: absolute;
+  inset: 0;
+  background: #f4f0e8;
+  opacity: 0;
+  transition: 0.8s;
+  z-index: 2;
+}
+
+.card.open .imgBox {
+  transform: rotateY(-135deg);
+}
+
+.card.open .bark {
+  opacity: 1;
+  box-shadow: 280px 200px 100px rgba(0, 0, 0, 0.35) inset;
+}
+
+.details {
+  position: absolute;
+  inset: 0;
+  padding: 34px 22px 20px 28px;
+  z-index: 1;
+  background: #fffaf0;
+  overflow: hidden;
+}
+
+.details h4 {
+  font-family: "Amatic SC", cursive;
+  font-size: 32px;
+  line-height: 30px;
   text-align: center;
-  font-size: 22px;
+}
+
+.color1 {
+  color: #7b3fb2;
+}
+
+.color2 {
+  color: #4d4d4d;
+}
+
+.margin {
+  margin-bottom: 28px;
+}
+
+.details p {
+  font-size: 17px;
+  line-height: 14px;
+  color: #3f3f3f;
+  transform: rotate(-4deg);
+  padding-left: 10px;
+  margin-bottom: 9px;
+}
+
+.text-right {
+  text-align: right;
+  padding-right: 18px;
+  color: #7b3fb2 !important;
+}
+
+.open-text {
+  width: 320px;
+  text-align: center;
+  font-size: 24px;
   color: #ffffff;
   font-weight: bold;
-  text-shadow: 0 3px 10px rgba(80, 35, 110, 0.9);
+  text-shadow: 0 3px 10px rgba(80, 35, 110, 0.95);
   animation: pulse 1.5s infinite;
 }
 
-.gift-box {
-  width: 220px;
-  height: 200px;
-  position: relative;
-  cursor: pointer;
-  animation: shake 1.2s infinite;
-}
-
-.gift-body {
-  width: 220px;
-  height: 150px;
-  background: #ffffff;
-  border: 5px solid #7b3fb2;
-  position: absolute;
-  bottom: 0;
-  border-radius: 0 0 16px 16px;
-  overflow: hidden;
-}
-
-.gift-lid {
-  width: 250px;
-  height: 60px;
-  background: #ffffff;
-  border: 5px solid #7b3fb2;
-  position: absolute;
-  top: 0;
-  left: -15px;
-  border-radius: 14px;
-  z-index: 3;
-  transition: transform 0.8s ease, opacity 0.5s ease;
-  overflow: hidden;
-}
-
-.ribbon.vertical {
-  width: 42px;
-  height: 200px;
-  background: #7b3fb2;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-}
-
-.ribbon.horizontal {
-  width: 220px;
-  height: 42px;
-  background: #7b3fb2;
-  position: absolute;
-  bottom: 55px;
-  z-index: 4;
-}
-
-.hearts {
-  color: #7b3fb2;
-  font-size: 28px;
-  letter-spacing: 12px;
-  opacity: 0.9;
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.gift-box.clicked {
-  animation: clickShake 0.3s ease;
-}
-
-.gift-box.open {
-  animation: none;
-}
-
-.gift-box.open .gift-lid {
-  transform: translateY(-120px) rotate(-18deg);
-  opacity: 0.95;
-}
-
-.letter-wrapper {
-  position: relative;
-  width: 390px;
-}
-
-/* La carta queda un poco más pequeña y girada hacia la derecha */
-.birthday-letter {
-  width: 390px;
-  min-height: 430px;
-  padding: 36px 34px;
-  background: rgba(255, 252, 244, 0.94);
-  border: 2px solid rgba(122, 63, 178, 0.25);
-  border-radius: 22px;
-  color: #5c3a4d;
-  box-shadow:
-    0 20px 45px rgba(20, 10, 30, 0.35),
-    inset 0 0 25px rgba(255, 220, 240, 0.45);
-  transform: rotate(2deg);
-  position: relative;
-  z-index: 4;
-}
-
-.birthday-letter::before {
-  content: "";
-  position: absolute;
-  inset: 14px;
-  border: 1px dashed rgba(122, 63, 178, 0.28);
-  border-radius: 16px;
-  pointer-events: none;
-}
-
-.letter-date {
-  display: block;
-  margin-bottom: 16px;
-  font-size: 18px;
-  color: #8b4bb8;
-}
-
-.birthday-letter h1 {
-  margin-bottom: 20px;
-  font-size: 30px;
-  line-height: 1.1;
-  color: #7b3fb2;
-  font-weight: 700;
-}
-
-.birthday-letter p {
-  margin-bottom: 18px;
-  font-size: 18px;
-  line-height: 1.42;
-}
-
-.letter-signature {
-  margin-top: 24px;
-  text-align: right;
-  color: #7b3fb2;
-  font-size: 22px;
-}
-
-/* Esta imagen queda encima de la carta */
 .corner-character {
-  position: absolute;
-  right: -42px;
-  bottom: -36px;
-  width: 240px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 235px;
   height: auto;
-  margin: 0;
-  padding: 0;
-  display: block;
   user-select: none;
   pointer-events: none;
+  z-index: 20;
   animation: softBounce 3s ease-in-out infinite;
-  z-index: 6;
-}
-
-@keyframes shake {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(2deg);
-  }
-
-  50% {
-    transform: rotate(-2deg);
-  }
-
-  75% {
-    transform: rotate(2deg);
-  }
-}
-
-@keyframes clickShake {
-  0% {
-    transform: scale(1) rotate(0deg);
-  }
-
-  30% {
-    transform: scale(1.05) rotate(4deg);
-  }
-
-  60% {
-    transform: scale(1.05) rotate(-4deg);
-  }
-
-  100% {
-    transform: scale(1) rotate(0deg);
-  }
 }
 
 @keyframes pulse {
