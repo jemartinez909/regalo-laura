@@ -27,6 +27,161 @@ body {
   object-fit: cover;
   z-index: 0;
 }
+.wish-section {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  width: 390px;
+  z-index: 50;
+}
+
+.wish-section h2 {
+  color: white;
+  font-size: 26px;
+  line-height: 1.4;
+  font-weight: 400;
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.55);
+  margin-bottom: 22px;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.wish-section h2.changing {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+#wishButton {
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 17px;
+  backdrop-filter: blur(12px);
+  transition: 0.35s;
+}
+
+#wishButton:hover {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-3px);
+}
+
+#wishButton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+#starsContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: fixed;
+  color: white;
+  font-size: 22px;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.9),
+    0 0 18px rgba(176, 126, 255, 0.8);
+  animation: starAnimation 3s ease forwards;
+  z-index: 45;
+}
+
+.shooting-star {
+  position: fixed;
+  top: 18%;
+  left: -160px;
+  width: 130px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, white);
+  filter: drop-shadow(0 0 10px white);
+  opacity: 0;
+  z-index: 46;
+  transform: rotate(-18deg);
+}
+
+.shooting-star::after {
+  content: "✦";
+  position: absolute;
+  right: -10px;
+  top: -13px;
+  color: white;
+  font-size: 24px;
+  text-shadow:
+    0 0 10px white,
+    0 0 22px #b47cff;
+}
+
+.shooting-star.active {
+  animation: shootingStarMove 1.8s ease-out forwards;
+}
+
+.video-overlay.magic {
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,0.18), transparent 22%),
+    radial-gradient(circle at 75% 30%, rgba(180,126,255,0.18), transparent 26%),
+    rgba(18, 14, 34, 0.34);
+}
+
+@keyframes starAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(var(--x), var(--y))
+      rotate(360deg)
+      scale(1.8);
+  }
+}
+@keyframes shootingStarMove {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-18deg);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(140vw) translateY(55vh) rotate(-18deg);
+  }
+}
+@media (max-width: 768px) {
+  .wish-section {
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    width: auto;
+  }
+
+  .wish-section h2 {
+    font-size: 18px;
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+
+  #wishButton {
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+
+  .shooting-star {
+    top: 24%;
+    width: 95px;
+  }
+}
 
 .video-overlay {
   position: fixed;
@@ -177,7 +332,7 @@ body {
   font-size: 24px;
   color: #ffffff;
   font-weight: bold;
-  text-shadow: 0 3px 10px rgba(80, 35, 110, 0.95);
+  /* text-shadow: 0 3px 10px rgba(80, 35, 110, 0.95); */
   animation: pulse 1.5s infinite;
 }
 
@@ -224,6 +379,21 @@ body {
 }
 
 @media (max-width: 768px) {
+  .wish-section{
+      top:20px;
+      left:20px;
+      right:20px;
+      width:auto;
+  }
+
+  .wish-section h2{
+      font-size:19px;
+  }
+
+  #wishButton{
+    font-size:15px;
+    padding:12px 20px;
+  }
   .card-scene {
     align-items: center;
     justify-content: center;
