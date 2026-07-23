@@ -15,6 +15,7 @@ const originalMessage =
 const magicMessage =
   "Los deseos más bonitos siempre encuentran el camino hacia las personas correctas...";
 
+// --- CONTROL DE AUDIO ---
 function startMusic() {
   if (!music || musicStarted) return;
 
@@ -57,15 +58,19 @@ function liftMusic() {
   }, 3800);
 }
 
+// --- EFECTOS MÁGICOS (ESTRELLAS) ---
 function createStars() {
+  if (!starsContainer) return;
+
+  starsContainer.innerHTML = "";
+
   for (let i = 0; i < 90; i++) {
     const star = document.createElement("span");
-
     star.className = "star";
     star.innerHTML = Math.random() > 0.5 ? "✦" : "✧";
 
-    star.style.left = Math.random() * window.innerWidth + "px";
-    star.style.top = Math.random() * window.innerHeight + "px";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
 
     star.style.setProperty("--x", Math.random() * 320 - 160 + "px");
     star.style.setProperty("--y", Math.random() * 320 - 160 + "px");
@@ -91,6 +96,7 @@ function changeMessage(newText) {
   }, 800);
 }
 
+// --- EVENTOS DE CARTA Y DESEO ---
 if (birthdayCard) {
   birthdayCard.addEventListener("click", () => {
     birthdayCard.classList.toggle("open");
@@ -110,11 +116,13 @@ if (button && starsContainer) {
     liftMusic();
     createStars();
 
-    videoOverlay.classList.add("magic");
+    if (videoOverlay) videoOverlay.classList.add("magic");
 
-    shootingStar.classList.remove("active");
-    void shootingStar.offsetWidth;
-    shootingStar.classList.add("active");
+    if (shootingStar) {
+      shootingStar.classList.remove("active");
+      void shootingStar.offsetWidth;
+      shootingStar.classList.add("active");
+    }
 
     setTimeout(() => {
       changeMessage(magicMessage);
@@ -125,10 +133,116 @@ if (button && starsContainer) {
     }, 6500);
 
     setTimeout(() => {
-      videoOverlay.classList.remove("magic");
+      if (videoOverlay) videoOverlay.classList.remove("magic");
       button.disabled = false;
       button.textContent = "✨ Haz un deseo ✨";
       wishActive = false;
     }, 8500);
   });
 }
+
+// --- REVELACIÓN AL HACER SCROLL ---
+const observerOptions = {
+  root: null,
+  threshold: 0.25
+};
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active-scroll");
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll(".story-section").forEach(section => {
+  sectionObserver.observe(section);
+});
+
+// --- INTERACTIVIDAD Y CATEGORÍAS ---
+document.addEventListener("DOMContentLoaded", () => {
+  
+  // 1. Tarjetas de historias (sección aventura)
+  const section = document.querySelector(".section-aventura-1");
+  if (section) {
+    const cards = section.querySelectorAll(".card");
+    const descriptions = section.querySelectorAll(".description-item");
+
+    cards.forEach((card) => {
+      card.addEventListener("click", function () {
+        if (this.classList.contains("active")) return;
+
+        const index = this.getAttribute("data-index");
+
+        cards.forEach((c) => {
+          c.classList.remove("active");
+          const origIndex = c.getAttribute("data-index");
+          c.style.zIndex = parseInt(origIndex) + 1;
+        });
+
+        this.classList.add("active");
+        this.style.zIndex = "10";
+
+        descriptions.forEach((desc) => {
+          desc.classList.remove("active");
+          if (desc.getAttribute("data-index") === index) {
+            setTimeout(() => {
+              desc.classList.add("active");
+            }, 50);
+          }
+        });
+      });
+    });
+  }
+
+  // 2. Navegación por Categorías
+  const categoryButtons = document.querySelectorAll(".category-btn");
+  const categoryWrappers = document.querySelectorAll(".category-wrapper");
+
+  categoryButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.classList.contains("btn-plus")) return;
+
+      const targetId = btn.getAttribute("data-target");
+
+      categoryButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      categoryWrappers.forEach(wrapper => {
+        wrapper.classList.remove("active");
+        if (wrapper.id === targetId) {
+          wrapper.classList.add("active");
+
+          const firstRadio = wrapper.querySelector('input[type="radio"]');
+          if (firstRadio) firstRadio.checked = true;
+        }
+      });
+    });
+  });
+
+  // 3. Modal Lightbox (Zoom Fotográfico)
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("card-img")) {
+      const img = e.target;
+      const cardItem = img.closest(".card-item");
+      if (!cardItem) return;
+
+      const inputAsociado = cardItem.previousElementSibling;
+
+      // Abre el modal solo si es la tarjeta activa en la pila
+      if (inputAsociado && inputAsociado.checked && lightbox && lightboxImg) {
+        lightboxImg.src = img.src;
+        lightbox.classList.add("active");
+      }
+    }
+  });
+
+  if (lightbox) {
+    lightbox.addEventListener("click", () => {
+      lightbox.classList.remove("active");
+    });
+  }
+});
