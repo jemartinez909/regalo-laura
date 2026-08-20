@@ -206,7 +206,7 @@
   animation-timing-function: var(--img-easing);
 }
 .card-item:has(~ input:nth-of-type(2):checked) > .card-img,
-.gallery-section input:nth-of-type(2):checked + .card-item ~ .card-item > .card-img { animation: straighten-img-2 calc(var(--duration) * 2) forwards; animation-timing-function: var(--img-easing); }
+.gallery-section input:nth-of-type(2):checked + .card-item ~ .card-item > .card-img  { animation: straighten-img-2 calc(var(--duration) * 2) forwards; animation-timing-function: var(--img-easing); }
 .card-item:has(~ input:nth-of-type(3):checked) > .card-img,
 .gallery-section input:nth-of-type(3):checked + .card-item ~ .card-item > .card-img { animation: straighten-img-3 calc(var(--duration) * 2) forwards; animation-timing-function: var(--img-easing); }
 .card-item:has(~ input:nth-of-type(4):checked) > .card-img,
@@ -235,6 +235,74 @@
 .card-item:has(+ input + .card-item + input + .card-item + input + .card-item + input + .card-item + input:checked) { z-index: 5; }
 .card-item:has(+ input + .card-item + input + .card-item + input + .card-item + input + .card-item + input + .card-item + input:checked) { z-index: 4; }
 .card-item:has(+ input + .card-item + input + .card-item + input + .card-item + input + .card-item + input + .card-item + input + .card-item + input:checked) { z-index: 3; }
+
+
+.card-media-wrapper {
+  position: relative;
+  display: block;
+  width: var(--img-w);
+  height: var(--img-w);
+  cursor: pointer;
+}
+
+.card-video-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* Permite hacer clic en toda la tarjeta sin interferir */
+}
+
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(var(--angle, 0deg));
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(135deg, #7b3fb2, #4a1582);
+  color: #ffb4e6;
+  border-radius: 50%;
+  border: 3px solid #ffb4e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  padding-left: 4px; /* Centrado óptico del ícono de play */
+  box-shadow: 0 6px 20px rgba(123, 63, 178, 0.5);
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(var(--angle, 0deg));
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(135deg, #7b3fb2, #4a1582);
+  color: #ffb4e6;
+  border-radius: 50%;
+  border: 3px solid #ffb4e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  padding-left: 4px; /* Centrado óptico del ícono de play */
+  box-shadow: 0 6px 20px rgba(123, 63, 178, 0.5);
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@media (max-width: 600px) {
+  .play-overlay {
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+  }
+}
 
 /* Contenedor de Textos Optimizado */
 .card-data {
@@ -362,6 +430,41 @@
 /* Animación de la imagen cuando el modal está activo */
 .lightbox.active img {
   transform: scale(1) rotate(0deg);
+}
+
+.lightbox video {
+  display: none;
+  max-width: 85%;
+  max-height: 75vh;
+  border-radius: 20px;
+  border: 6px solid #ffffff;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  outline: none;
+  background-color: #000000;
+  
+  transform: scale(0.8) rotate(-2deg);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lightbox.active video {
+  transform: scale(1) rotate(0deg);
+}
+
+/* Conmutación entre Foto y Video en el modal mediante la clase .is-video */
+.lightbox.is-video img {
+  display: none !important;
+}
+
+.lightbox.is-video video {
+  display: block !important;
+}
+
+.lightbox:not(.is-video) video {
+  display: none !important;
+}
+
+.lightbox:not(.is-video) img {
+  display: block;
 }
 
 /* =========================================================
