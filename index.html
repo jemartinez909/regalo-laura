@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carta para Laura</title>
     <link rel="icon" type="image/png" href="./assets/image-removebg-preview (3).png" />
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./gallery.css" />
-    <link rel="stylesheet" href="./buenas_noches.css" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/gallery.css" />
+    <link rel="stylesheet" href="../styles/buenas_noches.css" />
 
 </head>
 <body>
@@ -88,9 +88,10 @@
             <button class="category-btn" data-target="cat-tu-yo">Tú y Yo</button>
             <button class="category-btn" data-target="cat-jaime-duque">Jaime Duque</button>
             <button class="category-btn" data-target="cat-salidas">Salidas</button>
-            <button class="category-btn" data-target="cat-almuerzos">Almuerzos</button>
-            <button class="category-btn" data-target="cat-objetos">Objetos Mágicos</button>
-            <button class="category-btn btn-plus" aria-label="Añadir">+</button>
+            
+            <!-- Enlace al nuevo HTML estilizado como botón -->
+            <a href="./templates/aventuras.html" class="category-btn" style="text-decoration: none;">Aventuras</a>
+            
           </div>
 
           <!-- CATEGORÍA: PRIMERA VEZ -->
@@ -178,83 +179,106 @@
             </div>
           </div>
 
-          <!-- CATEGORÍA: TÚ Y YO -->
+          <!-- SECCIÓN: TÚ Y YO (cat-tu-yo) -->
           <div class="category-wrapper" id="cat-tu-yo">
             <div class="cards">
+
+              <!-- Tarjeta 1 -->
               <input type="radio" id="tuyo-1" name="radio-tuyo" checked>
               <article class="card-item" style="--angle:3deg">
                 <img class="card-img" src="assets/photos/tuyyo/IMG-20260628-WA0012.jpg" alt="Tú y yo 1">
                 <div class="card-data">
-                  <span class="card-num">1/5</span>
+                  <span class="card-num">1/6</span>
                   <h2>Nuestra mirada favorita</h2>
                   <p>28 de junio de 2026</p>
                   <p>Cada beso, cada mirada y cada momento contigo me recuerdan que el mejor lugar siempre será a tu lado.</p>
                   <footer>
-                    <label for="tuyo-5" aria-label="Previous">&#10094;</label>
-                    <label for="tuyo-2" aria-label="Next">&#10095;</label>
+                    <label for="tuyo-6" aria-label="Anterior">&#10094;</label>
+                    <label for="tuyo-2" aria-label="Siguiente">&#10095;</label>
                   </footer>
                 </div>
               </article>
 
+              <!-- Tarjeta 2 -->
               <input type="radio" id="tuyo-2" name="radio-tuyo">
               <article class="card-item" style="--angle:-5deg">
                 <img class="card-img" src="assets/photos/tuyyo/IMG-20260629-WA0002.jpg" alt="Tú y yo 2">
                 <div class="card-data">
-                  <span class="card-num">2/5</span>
+                  <span class="card-num">2/6</span>
                   <h2>Cómplices de todo</h2>
                   <p>28 de junio de 2026</p>
                   <p>Estrenamos nuestras camisetas para nuestra aventura en Jaime Duque y, al día siguiente, disfrutamos de un delicioso asado en la terraza. Me encantan esos planes que, contigo, se convierten en recuerdos inolvidables.</p>
                   <footer>
-                    <label for="tuyo-1" aria-label="Previous">&#10094;</label>
-                    <label for="tuyo-3" aria-label="Next">&#10095;</label>
+                    <label for="tuyo-1" aria-label="Anterior">&#10094;</label>
+                    <label for="tuyo-3" aria-label="Siguiente">&#10095;</label>
                   </footer>
                 </div>
               </article>
 
+              <!-- Tarjeta 3 -->
               <input type="radio" id="tuyo-3" name="radio-tuyo">
               <article class="card-item" style="--angle:6deg">
                 <img class="card-img" src="assets/photos/caballos.jpg" alt="Tú y yo 3">
                 <div class="card-data">
-                  <span class="card-num">3/5</span>
+                  <span class="card-num">3/6</span>
                   <h2>Tú y Yo</h2>
                   <p>2 de mayo de 2026</p>
                   <p>La vista era hermosa, pero lo mejor de ese momento fue compartirla contigo. Hay paisajes que nunca se olvidan, sobre todo cuando los vives con la persona que amas.</p>
                   <footer>
-                    <label for="tuyo-2" aria-label="Previous">&#10094;</label>
-                    <label for="tuyo-4" aria-label="Next">&#10095;</label>
+                    <label for="tuyo-2" aria-label="Anterior">&#10094;</label>
+                    <label for="tuyo-4" aria-label="Siguiente">&#10095;</label>
                   </footer>
                 </div>
               </article>
 
+              <!-- Tarjeta 4 -->
               <input type="radio" id="tuyo-4" name="radio-tuyo">
-              <article class="card-item" style="--angle:6deg">
+              <article class="card-item" style="--angle:-3deg">
                 <img class="card-img" src="assets/photos/tuyyo/IMG-20260727-WA0001.jpg" alt="Tú y yo 4">
                 <div class="card-data">
-                  <span class="card-num">4/5</span>
+                  <span class="card-num">4/6</span>
                   <h2>Entre nosotros</h2>
-                  
-                  <!--<p>La vista era hermosa, pero lo mejor de ese momento fue compartirla contigo. Hay paisajes que nunca se olvidan, sobre todo cuando los vives con la persona que amas.</p>-->
+                  <p>27 de julio de 2026</p>
+                  <p>Compartir la rutina y los pequeños momentos contigo es lo que hace que todo valga la pena.</p>
                   <footer>
-                    <label for="tuyo-3" aria-label="Previous">&#10094;</label>
-                    <label for="tuyo-5" aria-label="Next">&#10095;</label>
+                    <label for="tuyo-3" aria-label="Anterior">&#10094;</label>
+                    <label for="tuyo-5" aria-label="Siguiente">&#10095;</label>
                   </footer>
                 </div>
               </article>
 
+              <!-- Tarjeta 5 -->
               <input type="radio" id="tuyo-5" name="radio-tuyo">
-              <article class="card-item" style="--angle:6deg">
+              <article class="card-item" style="--angle:4deg">
                 <img class="card-img" src="assets/photos/tuyyo/IMG-20260727-WA0003.jpg" alt="Tú y yo 5">
                 <div class="card-data">
-                  <span class="card-num">5/5</span>
+                  <span class="card-num">5/6</span>
                   <h2>Mi lugar favorito</h2>
-                  
-                  <!--<p>La vista era hermosa, pero lo mejor de ese momento fue compartirla contigo. Hay paisajes que nunca se olvidan, sobre todo cuando los vives con la persona que amas.</p>-->
+                  <p>27 de julio de 2026</p>
+                  <p>Sin importar la distancia ni el lugar, estar juntos siempre es el mejor refugio.</p>
                   <footer>
-                    <label for="tuyo-4" aria-label="Previous">&#10094;</label>
-                    <label for="tuyo-1" aria-label="Next">&#10095;</label>
+                    <label for="tuyo-4" aria-label="Anterior">&#10094;</label>
+                    <label for="tuyo-6" aria-label="Siguiente">&#10095;</label>
                   </footer>
                 </div>
               </article>
+
+              <!-- Tarjeta 6 -->
+              <input type="radio" id="tuyo-6" name="radio-tuyo">
+              <article class="card-item" style="--angle:-2deg">
+                <img class="card-img" src="assets/photos/tuyyo/besoEnMonta.jpg" alt="Tú y yo 6">
+                <div class="card-data">
+                  <span class="card-num">6/6</span>
+                  <h2>Un beso en la Montaña</h2>
+                  <p>22 de agosto de 2026</p>
+                  <p>Coleccionando sonrisas e instantes para siempre.</p>
+                  <footer>
+                    <label for="tuyo-5" aria-label="Anterior">&#10094;</label>
+                    <label for="tuyo-1" aria-label="Siguiente">&#10095;</label>
+                  </footer>
+                </div>
+              </article>
+
             </div>
           </div>
 
@@ -493,12 +517,12 @@
               <article class="card-item" style="--angle:-2deg">
                 <img class="card-img" src="assets/photos/Salidas/restaurante_1 (1).jpg" alt="Salidas 1">
                 <div class="card-data">
-                  <span class="card-num">1/6</span>
+                  <span class="card-num">1/4</span>
                   <h2>Brindis antes de la película</h2>
-                  <p>2026</p>
+                  <p>1 de agosto de 2026</p>
                   <p>Un poco de sake para abrir el apetito. Pequeños detalles que hacen especial cualquier plan contigo.</p>
                   <footer>
-                    <label for="salidas-6" aria-label="Anterior">&#10094;</label>
+                    <label for="salidas-4" aria-label="Anterior">&#10094;</label>
                     <label for="salidas-2" aria-label="Siguiente">&#10095;</label>
                   </footer>
                 </div>
@@ -509,9 +533,9 @@
               <article class="card-item" style="--angle:3deg">
                 <img class="card-img" src="assets/photos/Salidas/restauranteComida.jpg" alt="Salidas 2">
                 <div class="card-data">
-                  <span class="card-num">2/6</span>
+                  <span class="card-num">2/4</span>
                   <h2>Ramen, dumplings y tú</h2>
-                  <p>2026</p>
+                  <p>1 de agosto de 2026</p>
                   <p>Nos llenamos hasta no poder más. La mejor manera de prepararnos para ver a Spiderman: con el estómago feliz y contigo al lado.</p>
                   <footer>
                     <label for="salidas-1" aria-label="Anterior">&#10094;</label>
@@ -525,9 +549,9 @@
               <article class="card-item" style="--angle:-4deg">
                 <img class="card-img" src="assets/photos/Salidas/restauranteTotoro.jpg" alt="Salidas 3">
                 <div class="card-data">
-                  <span class="card-num">3/6</span>
+                  <span class="card-num">3/4</span>
                   <h2>Un saludo de Totoro</h2>
-                  <p>2026</p>
+                  <p>1 de agosto de 2026</p>
                   <p>Hasta él nos deseó buena suerte antes de ir al cine. Un detalle tierno que no podía faltar en la foto.</p>
                   <footer>
                     <label for="salidas-2" aria-label="Anterior">&#10094;</label>
@@ -541,31 +565,12 @@
               <article class="card-item" style="--angle:2deg">
                 <img class="card-img" src="assets/photos/Salidas/feriaQuesos1.jpg" alt="Salidas 4">
                 <div class="card-data">
-                  <span class="card-num">4/6</span>
+                  <span class="card-num">4/4</span>
                   <h2>Feria de quesos en Lourdes</h2>
-                  <p>2026</p>
+                  <p>25 de julio de 2026</p>
                   <p>Entre bailes típicos, quesos, galletas y arepas. Cualquier plan contigo termina siendo el mejor plan.</p>
-                  <p>Nos quedamos un rato disfrutando el baile antes de seguir con las compras. Y para cerrar el día, hasta un Jenga nos llevamos para jugar juntos.</p>
                   <footer>
                     <label for="salidas-3" aria-label="Anterior">&#10094;</label>
-                    <label for="salidas-5" aria-label="Siguiente">&#10095;</label>
-                  </footer>
-                </div>
-              </article>
-
-              
-
-              <!-- Tarjeta 6 -->
-              <input type="radio" id="salidas-6" name="radio-salidas">
-              <article class="card-item" style="--angle:4deg">
-                <img class="card-img" src="assets/photos/salidas/salida_6.jpg" alt="Salidas 6">
-                <div class="card-data">
-                  <span class="card-num">6/6</span>
-                  <h2>Cierre Perfecto</h2>
-                  <p>2026</p>
-                  <p>Coleccionando recuerdos que duran para siempre.</p>
-                  <footer>
-                    <label for="salidas-5" aria-label="Anterior">&#10094;</label>
                     <label for="salidas-1" aria-label="Siguiente">&#10095;</label>
                   </footer>
                 </div>
@@ -589,6 +594,5 @@
   
   <script src="./script.js"></script>
   <script src="./gallery.js"></script>
-  
 </body>
 </html>
